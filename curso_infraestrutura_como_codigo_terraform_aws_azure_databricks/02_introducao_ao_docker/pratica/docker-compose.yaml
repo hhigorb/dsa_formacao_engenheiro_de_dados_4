@@ -1,0 +1,17 @@
+version: '3'
+services:
+  nginx:
+    container_name: web-service
+    image: nginx
+    ports:
+      - 8080:80
+
+  postgres:
+    container_name: db-service
+    image: postgres:16
+    environment:
+      - POSTGRES_USER=iggy
+      - POSTGRES_PASSWORD=iggy
+      - POSTGRES_DB=iggy
+    ports:
+      - 5432:5432
