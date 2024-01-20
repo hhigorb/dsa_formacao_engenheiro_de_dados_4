@@ -1,12 +1,18 @@
-provider "aws" {
-  region = "us-east-2"
+provider "google" {
+  project = "avian-airway-407423"
+  region  = "us-east-1"
+  zone    = "us-east1-b"
 }
+resource "google_compute_instance" "default" {
+  name         = "default"
+  machine_type = "e2-micro"
+  network_interface {
+    network = "my-instance"
+  }
 
-resource "aws_instance" "tarefa1" {
-  ami           = "ami-0a0d9cf81c479446a" # AMI na AWS
-  instance_type = "t2.micro"
-
-  tags = {
-    Name = "lab1-terraform"
+  boot_disk {
+    initialize_params {
+      image = "projects/debian-cloud/global/images/debian-11-bullseye-v20240110"
+    }
   }
 }
