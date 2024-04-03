@@ -1,0 +1,18 @@
+# docker compose -f docker-compose.Postgres.yaml up -d
+
+version: '3.9'
+
+services:
+  postgres:
+    image: postgres:16.2
+    ports:
+      - 5432:5432
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=dev_db
+
+volumes:
+  postgres_data:
