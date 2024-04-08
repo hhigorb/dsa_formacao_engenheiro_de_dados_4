@@ -29,8 +29,8 @@ FROM
 
 /* SEMPRE antes de fazer update ou delete na tabela,
    faça um select, garantindo que o retorno é sempre
-   o registro que você  quer alterar. NUNCA FAÇA 
-   UPDATE SEM WHERE.
+   o registro que você  quer alterar ou deletar.
+   NUNCA FAÇA UPDATE OU DELETE SEM WHERE.
 */
  
 UPDATE capitulo03.funcionarios 
