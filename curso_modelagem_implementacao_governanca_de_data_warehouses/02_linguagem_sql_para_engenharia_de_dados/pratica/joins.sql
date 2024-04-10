@@ -29,6 +29,8 @@ estamos combinando informações das tabelas funcionarios e projetos com
 base no id_funcionario.
 */
 
+-- Inner Join
+
 -- Nome e salário dos funcionários alocados em projetos
 
 SELECT 
@@ -41,4 +43,25 @@ INNER JOIN -- É possível usar tanto INNER JOIN quanto apenas JOIN para se refe
   capitulo03.projetos p
 ON 
   f.id_funcionario = p.id_funcionario;
-
+ 
+/* 
+Um LEFT JOIN retorna todas as linhas da tabela da esquerda (tabela do FROM)
+e também retorna o que tem correspondência entre as tabelas. Basicamente traz
+todas as linhas da tabela da esquerda e faz um Inner Join entre ambas as tabelas.
+Se não houver correspondência entre as colunas da cláusula ON, traz nulo.
+*/
+ 
+-- Left Join
+ 
+ -- Nome e salário de todos os funcionários independente de estarem alocados em projetos.
+ 
+ SELECT 
+   f.nome,
+   f.salario,
+   COALESCE(p.nome_projeto, 'Não alocado em projeto') AS nome_projeto
+ FROM 
+   capitulo03.funcionarios f 
+LEFT JOIN 
+  capitulo03.projetos p 
+ON
+  f.id_funcionario = p.id_funcionario
