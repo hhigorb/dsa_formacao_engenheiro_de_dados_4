@@ -14,7 +14,7 @@ Agrupamentos
 
 Sempre que for realizado algum agrupamento, como
 fazer a média por departamento, em SQL é obrigatório
-agrupar todas as colunas que não possuem funções
+agrupar todas as colunas que não estão em funções
 de agregação (min, max, avg, sum, count).
 */
   
