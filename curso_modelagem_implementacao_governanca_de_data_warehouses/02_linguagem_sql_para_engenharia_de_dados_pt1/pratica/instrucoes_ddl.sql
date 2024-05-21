@@ -1,3 +1,10 @@
+/*
+Chave primária (Primary Key - PK) é o identificador único de cada linha da tabela.
+
+Chave estrangeira (Foreign Key - FK) é um campo que cria um vínculo entre duas tabelas.
+Ela refere-se à chave primária em outra tabela, garantindo a integridade referencial.
+*/
+
 -- Criar um schema em um banco de dados
 
 CREATE SCHEMA capitulo03 AUTHORIZATION root;
@@ -8,7 +15,7 @@ CREATE, ALTER, DROP */
 -- Criação de tabelas
 
 CREATE TABLE capitulo03.funcionarios (
-	id_funcionario SERIAL primary key, -- Chave primária é o identificador único de cada linha da tabela.
+	id_funcionario SERIAL primary key,
 	nome VARCHAR(255),
 	departamento VARCHAR(255),
 	salario DECIMAL(10, 2)

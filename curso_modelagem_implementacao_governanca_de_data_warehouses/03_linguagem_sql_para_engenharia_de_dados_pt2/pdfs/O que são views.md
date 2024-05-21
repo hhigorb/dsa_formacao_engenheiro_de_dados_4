@@ -23,3 +23,7 @@ Como as views são executadas em tempo real, o desempenho pode ser um problema c
 complexas ou grandes volumes de dados.
 
 Alterações na estrutura das tabelas podem afetas as views que as utilizam.
+
+### Espaço em disco
+
+Uma view não armazena dados fisicamente, mas sim a definição da consulta que é executada quando a view é chamada, por isso ocupam um espaço mínimo em disco, pois só armazenam a definição da consulta. Não armazenam os dados resultantes da consulta.
