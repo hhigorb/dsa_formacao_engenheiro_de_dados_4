@@ -18,6 +18,11 @@ Dependendo do sistema de gerenciamento de banco de dados, a View Materializada p
 
 É importante considerar a frequência de atualização, pois isso pode impactar o desempenho e a relevância dos dados.
 
+### Espaço em disco
+
+Uma view materializada armazena fisicamente os dados resultantes da consulta no momento em que a view materializada é criada ou atualizada, ocupando espaço em disco semelhante ao das tabelas tradicionais,
+pois armazenam fisicamente os dados.
+
 ### Considerações Importantes:
 
 Views Materializadas ocupam espaço físico no banco de dados.
