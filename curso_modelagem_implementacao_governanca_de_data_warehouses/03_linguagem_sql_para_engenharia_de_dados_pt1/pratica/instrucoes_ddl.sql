@@ -9,6 +9,10 @@ Ela refere-se à chave primária em outra tabela, garantindo a integridade refer
 
 CREATE SCHEMA capitulo03 AUTHORIZATION root;
 
+-- Criar um banco de dados
+
+CREATE DATABASE nome_do_banco;
+
 /* Instruções DDL (Data Definition Language)
 CREATE, ALTER, DROP */
 
