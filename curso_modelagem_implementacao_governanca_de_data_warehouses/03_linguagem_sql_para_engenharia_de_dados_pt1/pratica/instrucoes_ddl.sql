@@ -5,13 +5,13 @@ Chave estrangeira (Foreign Key - FK) é um campo que cria um vínculo entre duas
 Ela refere-se à chave primária em outra tabela, garantindo a integridade referencial.
 */
 
--- Criar um schema em um banco de dados
-
-CREATE SCHEMA capitulo03 AUTHORIZATION root;
-
 -- Criar um banco de dados
 
 CREATE DATABASE nome_do_banco;
+
+-- Criar um schema em um banco de dados
+
+CREATE SCHEMA capitulo03 AUTHORIZATION root;
 
 /* Instruções DDL (Data Definition Language)
 CREATE, ALTER, DROP */
