@@ -1,5 +1,5 @@
 provider "google" {
-  project     = "modelagem-dw-lab1"
+  project     = "modelagem-dw-lab1-431801"
   region      = "us-west1"
 }
 
@@ -107,7 +107,7 @@ resource "google_bigquery_job" "job_sql_1" {
 
   load {
     source_uris = [
-      "gs://dsa-modeling-p1/tbClienteDSA.csv",
+      "gs://dsa-modeling-lab1/tbClienteDSA.csv",
     ]
 
     destination_table {
@@ -132,7 +132,7 @@ resource "google_bigquery_job" "job_sql_2" {
 
   load {
     source_uris = [
-      "gs://dsa-modeling-p1/tbProdutoDSA.csv",
+      "gs://dsa-modeling-lab1/tbProdutoDSA.csv",
     ]
 
     destination_table {
@@ -157,7 +157,7 @@ resource "google_bigquery_job" "job_sql_3" {
 
   load {
     source_uris = [
-      "gs://dsa-modeling-p1/tbFatoDSA.csv",
+      "gs://dsa-modeling-lab1/tbFatoDSA.csv",
     ]
 
     destination_table {
