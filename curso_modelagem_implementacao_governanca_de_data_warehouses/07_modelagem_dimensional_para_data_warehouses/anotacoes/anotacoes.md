@@ -1,6 +1,6 @@
 # Modelagem Dimensional
 
-## Introdução
+## Introdução sobre Modelagem Dimensional
 
 ![Modelagem Dimensional](../images/image1.png 'Modelagem Dimensional')
 
@@ -67,3 +67,17 @@ Em resumo, medidas em um data warehouse são os dados numéricos que são analis
 ---
 
 ![Modelagem Dimensional](../images/image12.png 'Modelagem Dimensional')
+
+## Cargas de Dados e ETL
+
+---
+
+![Cargas de Dados e ETL](../images/image13.png 'Cargas de Dados e ETL')
+
+---
+
+![Cargas de Dados e ETL](../images/image14.png 'Cargas de Dados e ETL')
+
+---
+
+![Cargas de Dados e ETL](../images/image15.png 'Cargas de Dados e ETL')
