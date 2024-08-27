@@ -81,3 +81,7 @@ Em resumo, medidas em um data warehouse são os dados numéricos que são analis
 ---
 
 ![Cargas de Dados e ETL](../images/image15.png 'Cargas de Dados e ETL')
+
+---
+
+![Otimização de modelos dimensionais](../images/image16.png 'Otimização de modelos dimensionais')
