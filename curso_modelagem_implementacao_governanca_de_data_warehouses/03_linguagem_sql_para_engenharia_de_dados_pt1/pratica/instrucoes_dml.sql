@@ -27,11 +27,17 @@ FROM
  
 -- Atualizar registros da tabela 
 
-/* SEMPRE antes de fazer update ou delete na tabela,
-   faça um select, garantindo que o retorno é sempre
-   o registro que você  quer alterar ou deletar.
-   NUNCA FAÇA UPDATE OU DELETE SEM WHERE.
+/*
+   Antes de realizar um UPDATE ou DELETE em uma tabela,
+   sempre execute um SELECT para garantir que o retorno 
+   corresponde exatamente aos registros que você deseja 
+   alterar ou excluir.
+
+   NUNCA execute um UPDATE ou DELETE sem a cláusula WHERE, 
+   exceto se o objetivo for modificar ou deletar todos
+   os registros da tabela.
 */
+
  
 UPDATE capitulo03.funcionarios 
 SET salario = 5000
