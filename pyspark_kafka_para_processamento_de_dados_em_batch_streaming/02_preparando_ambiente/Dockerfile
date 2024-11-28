@@ -36,7 +36,7 @@ RUN curl https://archive.apache.org/dist/spark/spark-3.5.0/spark-3.5.0-bin-hadoo
 FROM spark-base as pyspark
 
 # Instala as dependências Python
-COPY requirements/requirements.txt .
+COPY requirements.txt .
 RUN pip3 install -r requirements.txt
 
 # Mais variáveis de ambiente
@@ -48,7 +48,7 @@ ENV SPARK_MASTER_PORT 7077
 ENV PYSPARK_PYTHON python3
 
 # Copia o arquivo de configuração do Spark para a imagem
-COPY conf/spark-defaults.conf "$SPARK_HOME/conf"
+COPY spark-defaults.conf "$SPARK_HOME/conf"
 
 # Permissões
 RUN chmod u+x /opt/spark/sbin/* && \

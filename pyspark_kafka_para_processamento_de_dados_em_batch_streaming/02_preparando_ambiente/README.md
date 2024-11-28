@@ -2,6 +2,9 @@
 # Preparação do Ambiente de Trabalho com Python e PySpark
 # Configuração do Cluster PySpark
 
+# Fazer o build da imagem Docker
+docker build -t dsa-pyspark-image .
+
 # Criar e Inicializar o Cluster
 docker compose -f docker-compose.yml up -d --scale spark-worker=2
 
