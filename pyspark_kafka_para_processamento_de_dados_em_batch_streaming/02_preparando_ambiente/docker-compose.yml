@@ -1,5 +1,3 @@
-name: dsa-pyspark-cluster
-
 services:
   spark-master:
     container_name: dsa-pyspark-master
@@ -20,6 +18,8 @@ services:
     ports:
       - '9091:8080'
       - '7071:7077'
+    networks:
+      - my_network
 
   spark-history-server:
     container_name: dsa-pyspark-history
@@ -33,6 +33,8 @@ services:
       - spark-logs:/opt/spark/spark-events
     ports:
       - '18081:18080'
+    networks:
+      - my_network
 
   spark-worker:
     image: dsa-pyspark-image
@@ -45,6 +47,13 @@ services:
       - ./dados:/opt/spark/data
       - ./jobs:/opt/spark/apps
       - spark-logs:/opt/spark/spark-events
+    networks:
+      - my_network
 
 volumes:
   spark-logs:
+
+networks:
+  my_network:
+    name: my_network
+    driver: bridge
