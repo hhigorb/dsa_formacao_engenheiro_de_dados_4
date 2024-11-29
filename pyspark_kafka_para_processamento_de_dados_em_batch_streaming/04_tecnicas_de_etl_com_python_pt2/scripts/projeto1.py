@@ -49,7 +49,7 @@ else:
     # Salva os dados no banco de dados PostgreSQL
     df.write \
         .format("jdbc") \
-        .option("url", "jdbc:postgresql://localhost:5432/dev_db") \
+        .option("url", "jdbc:postgresql://postgres:5432/dev_db") \
         .option("dbtable", "usuarios") \
         .option("user", "root") \
         .option("password", "root") \
