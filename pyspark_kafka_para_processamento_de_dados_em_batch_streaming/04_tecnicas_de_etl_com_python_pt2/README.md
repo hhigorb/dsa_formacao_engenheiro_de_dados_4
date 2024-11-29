@@ -2,6 +2,14 @@
 
 Abra o terminal ou prompt de comando e navegue até a pasta onde estão os arquivos do projeto. Execute os comandos abaixo:
 
+##### Crie a rede Docker 
+
+Crie a rede Docker para os containers Spark e PostgreSQL se comunicarem entre si:
+
+```bash
+docker network create my_network
+```
+
 ##### Gera o arquivo JSON
 
 ```bash
