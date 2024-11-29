@@ -10,6 +10,12 @@ Crie a rede Docker para os containers Spark e PostgreSQL se comunicarem entre si
 docker network create my_network
 ```
 
+### Inicie os containers do cluster Spark e PostgreSQL
+
+```bash
+docker-compose up -d
+```
+
 ### Gera o arquivo JSON
 
 ```bash
