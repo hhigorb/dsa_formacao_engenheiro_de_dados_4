@@ -26,7 +26,8 @@ python3 01-gera_json.py
 
 02-cria_tabela.sql
 
-### Executa o Job sem Driver JDBC (gera erro)
+### Tipos de execução Spark
+
 spark-submit é a forma de enviar um job para o Spark. O job é sempre enviado para o nó master, e ele distribui as tarefas para os workers (paralelizado).
 
 O parâmetro **--deploy-mode** define onde o driver do Spark será executado:
@@ -36,6 +37,8 @@ O parâmetro **--deploy-mode** define onde o driver do Spark será executado:
 **cluster:** O driver roda no cluster, recomendado para produção, com maior eficiência em jobs longos e complexos.
 
 A escolha depende do ambiente (local vs. produção) e do gerenciador de cluster usado (YARN, Kubernetes, etc.).
+
+### Executa o Job sem Driver JDBC (gera erro)
 
 ```bash
 docker exec dsa-pyspark-master spark-submit --deploy-mode client ./apps/projeto1.py
