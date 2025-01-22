@@ -19,24 +19,25 @@ print('\nDSA Projeto 2 - Script 05 - Array Type e StructType:\n')
 spark = SparkSession.builder.appName('DSAProjeto2-Script05').getOrCreate()
 
 # Define dados de exemplo para o DataFrame
-dados_dsa = [("Patricia,Freitas",["Python","Rust","C++"],["Scala","Ruby"],"RJ","SP"),
-             ("Fernanda,Oliveira,",["Java","Python","C++"],["PHP","Perl"],"MG","RS"),
-             ("Carlos,Souza",["PHP","Java"],["Ruby","Python"],"ES","SC")]
+dados_dsa = [("Patricia,Freitas", ["Python", "Rust", "C++"], ["Scala", "Ruby"], "RJ", "SP"),
+             ("Fernanda,Oliveira,", ["Java", "Python",
+              "C++"], ["PHP", "Perl"], "MG", "RS"),
+             ("Carlos,Souza", ["PHP", "Java"], ["Ruby", "Python"], "ES", "SC")]
 
 # Define um tipo de coluna Array com Strings, sem aceitar valores nulos (exemplo)
-arrayCol = ArrayType(StringType(),False)
+arrayCol = ArrayType(StringType(), False)
 
 # Define o esquema (estrutura) do DataFrame
-schema = StructType([ 
-    StructField("nome", StringType(),True), 
-    StructField("linguagemMaisUsada", ArrayType(StringType()),True), 
-    StructField("linguagemMenosUsada", ArrayType(StringType()),True), 
-    StructField("estadoAnterior", StringType(), True), 
-    StructField("estadoAtual", StringType(), True) 
-  ])
+schema = StructType([
+    StructField("nome", StringType(), True),
+    StructField("linguagemMaisUsada", ArrayType(StringType()), True),
+    StructField("linguagemMenosUsada", ArrayType(StringType()), True),
+    StructField("estadoAnterior", StringType(), True),
+    StructField("estadoAtual", StringType(), True)
+])
 
 # Cria um DataFrame com os dados e esquema especificados
-df = spark.createDataFrame(data = dados_dsa, schema = schema)
+df = spark.createDataFrame(data=dados_dsa, schema=schema)
 
 # Exibe o esquema do DataFrame
 df.printSchema()
@@ -48,14 +49,12 @@ df.show()
 df.select(df.nome, explode(df.linguagemMaisUsada)).show()
 
 # Seleciona e mostra a coluna nome dividida em um array
-df.select(split(df.nome,",").alias("nomeAsArray")).show()
+df.select(split(df.nome, ",").alias("nomeAsArray")).show()
 
 # Seleciona e mostra o nome e um array dos estados anterior e atual
-df.select(df.nome, array(df.estadoAnterior,df.estadoAtual).alias("estadoAsArray")).show()
+df.select(df.nome, array(df.estadoAnterior,
+          df.estadoAtual).alias("estadoAsArray")).show()
 
 # Seleciona e mostra se a coluna linguagemMaisUsada contém "Python"
-df.select(df.nome, array_contains(df.linguagemMaisUsada,"Python").alias("usa_python")).show()
-
-
-
-
+df.select(df.nome, array_contains(df.linguagemMaisUsada,
+          "Python").alias("usa_python")).show()

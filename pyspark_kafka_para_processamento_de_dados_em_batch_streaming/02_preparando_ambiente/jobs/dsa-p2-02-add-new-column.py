@@ -26,7 +26,7 @@ dados_dsa = [('Ana', 'Silva', 'F', 3000),
 columns = ["nome", "sobrenome", "genero", "salario"]
 
 # Cria um DataFrame com os dados e esquema especificados
-df = spark.createDataFrame(data = dados_dsa, schema = columns)
+df = spark.createDataFrame(data=dados_dsa, schema=columns)
 
 # Mostra o DataFrame
 df.show()
@@ -36,25 +36,25 @@ if 'percentual_bonus' not in df.columns:
 
     print("A coluna percentual_bonus não existe na tabela. Adicionando...\n")
 
-    # Adiciona a coluna com o percentual de bônus 
+    # Adiciona a coluna com o percentual de bônus
     df.withColumn("percentual_bonus", lit(0.3)).show()
-    
+
 # Adiciona uma coluna com o valor do bônus calculado com base no salário
 df.withColumn("valor_bonus", df.salario * 0.3).show()
 
 # Adiciona uma coluna concatenando nome e sobrenome
-df.withColumn("name", concat_ws(",","nome",'sobrenome')).show()
+df.withColumn("name", concat_ws(",", "nome", 'sobrenome')).show()
 
 # Adiciona uma coluna com a data atual
 df.withColumn("current_date", current_date()).show()
 
 # Adiciona uma coluna com a classificação com base no salário
-df.withColumn("nivel", \
-   when((df.salario < 4000), lit("A")) \
-     .when((df.salario >= 4000) & (df.salario <= 5000), lit("B")) \
-     .otherwise(lit("C")) \
-  ).show()
-    
+df.withColumn("nivel",
+              when((df.salario < 4000), lit("A"))
+              .when((df.salario >= 4000) & (df.salario <= 5000), lit("B"))
+              .otherwise(lit("C"))
+              ).show()
+
 # Seleciona duas colunas e adiciona uma coluna com o bônus
 df.select("nome", "salario", lit(0.3).alias("bonus")).show()
 
@@ -83,9 +83,3 @@ spark.sql("select nome, salario, current_date() as today_date from DSATEMP").sho
 spark.sql("select nome, salario, " +
           "case when salario < 4000 then 'A' " +
           "else 'B' END as nivel from DSATEMP").show()
-
-
-
-
-
-

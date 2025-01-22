@@ -16,18 +16,19 @@ print('\nDSA Projeto 2 - Script 17 - Drop de Colunas:\n')
 spark = SparkSession.builder.appName('DSAProjeto2-Script17').getOrCreate()
 
 # Define uma tupla de tuplas contendo dados de exemplo
-dados_dsa = (("Carlos", "", "Smith", "16636", "Rio de Janeiro", 13100), \
-             ("Leonardo", "Rose", "", "20288", "Belo Horizonte", 14300), \
-             ("Marcos", "", "Williams", "12114", "Natal", 11400), \
-             ("Maria", "Anne", "Jones", "19192", "Natal", 15500), \
-             ("Alex", "Mary", "Brown", "24561", "Rio de Janeiro", 13000) \
-            )
+dados_dsa = (("Carlos", "", "Smith", "16636", "Rio de Janeiro", 13100),
+             ("Leonardo", "Rose", "", "20288", "Belo Horizonte", 14300),
+             ("Marcos", "", "Williams", "12114", "Natal", 11400),
+             ("Maria", "Anne", "Jones", "19192", "Natal", 15500),
+             ("Alex", "Mary", "Brown", "24561", "Rio de Janeiro", 13000)
+             )
 
 # Define os nomes das colunas para o DataFrame
-colunas = ["primeironome", "nomedomeio", "sobrenome", "id", "cidade", "salario"]
+colunas = ["primeironome", "nomedomeio",
+           "sobrenome", "id", "cidade", "salario"]
 
 # Cria um DataFrame a partir dos dados fornecidos e com o esquema especificado pelas colunas
-df = spark.createDataFrame(data = dados_dsa, schema = colunas)
+df = spark.createDataFrame(data=dados_dsa, schema=colunas)
 
 # Exibe o esquema do DataFrame, mostrando os tipos de dados e a estrutura
 df.printSchema()
@@ -37,10 +38,10 @@ df.show(truncate=False)
 
 # Remove a coluna 'primeironome' do DataFrame e exibe o novo esquema
 df.drop("primeironome").printSchema()
-  
+
 # Remove a coluna 'primeironome' do DataFrame usando a função 'col' e exibe o novo esquema
-df.drop(col("primeironome")).printSchema()  
-  
+df.drop(col("primeironome")).printSchema()
+
 # Remove a coluna 'primeironome' diretamente acessando-a como atributo do DataFrame e exibe o novo esquema
 df.drop(df.primeironome).printSchema()
 
@@ -52,6 +53,3 @@ cols = ("primeironome", "nomedomeio", "sobrenome", "cidade")
 
 # Remove as colunas especificadas na tupla 'cols' do DataFrame e exibe o novo esquema
 df.drop(*cols).printSchema()
-
-
-

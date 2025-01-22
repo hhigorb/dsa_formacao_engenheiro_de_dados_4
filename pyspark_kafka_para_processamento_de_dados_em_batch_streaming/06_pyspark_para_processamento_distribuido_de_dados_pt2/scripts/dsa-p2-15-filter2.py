@@ -17,35 +17,35 @@ spark = SparkSession.builder.appName('DSAProjeto2-Script15').getOrCreate()
 
 # Cria dados de exemplo
 dados_dsa = [
-        (("Jonas","","Soares"),["Java","Scala","C++"],"SP","M"),
-        (("Clara","Rose",""),["Spark","Java","C++"],"RJ","F"),
-        (("Marcela","","Teixeira"),["Rust","Go"],"SP","F"),
-        (("Roberto","Vasconcelos","Souza"),["Rust","Go"],"RJ","M"),
-        (("Alice","Telles","Morgan"),["Rust","Go"],"RJ","M"),
-        (("Luiz","Duarte","Oliveira"),["Python","Go"],"SP","M")
-        ]
-        
+    (("Jonas", "", "Soares"), ["Java", "Scala", "C++"], "SP", "M"),
+    (("Clara", "Rose", ""), ["Spark", "Java", "C++"], "RJ", "F"),
+    (("Marcela", "", "Teixeira"), ["Rust", "Go"], "SP", "F"),
+    (("Roberto", "Vasconcelos", "Souza"), ["Rust", "Go"], "RJ", "M"),
+    (("Alice", "Telles", "Morgan"), ["Rust", "Go"], "RJ", "M"),
+    (("Luiz", "Duarte", "Oliveira"), ["Python", "Go"], "SP", "M")
+]
+
 # Define o schema
 schema_dados_dsa = StructType([
-        StructField('nome', StructType([
-             StructField('primeironome', StringType(), True),
-             StructField('nomedomeio', StringType(), True),
-             StructField('sobrenome', StringType(), True)
-             ])),
-         StructField('linguagens', ArrayType(StringType()), True),
-         StructField('estado', StringType(), True),
-         StructField('genero', StringType(), True)
-         ])
+    StructField('nome', StructType([
+        StructField('primeironome', StringType(), True),
+        StructField('nomedomeio', StringType(), True),
+        StructField('sobrenome', StringType(), True)
+    ])),
+    StructField('linguagens', ArrayType(StringType()), True),
+    StructField('estado', StringType(), True),
+    StructField('genero', StringType(), True)
+])
 
 # Cria o dataframe com a definição do schema
-df = spark.createDataFrame(data = dados_dsa, schema = schema_dados_dsa)
+df = spark.createDataFrame(data=dados_dsa, schema=schema_dados_dsa)
 
 # Mostra o DataFrame sem truncar os valores (para visualização completa)
 print("Dataframe Completo:")
 df.show(truncate=False)
 
 # Cria uma lista de estados
-lista_estados_dsa = ["SP","MG","ES"]
+lista_estados_dsa = ["SP", "MG", "ES"]
 
 print("Mais Filtros:")
 
@@ -71,14 +71,14 @@ df.filter(df.nome.primeironome.endswith("a")).show(truncate=False)
 df.filter(df.nome.sobrenome == "Oliveira").show(truncate=False)
 
 # Cria dados de exemplo
-dados_dsa2 = [(1,"James Smith"), 
-              (2,"Michael Rose"), 
-              (3,"Lucas Martins"), 
-              (4,"Marcelo Carvalho"), 
-              (5,"Marcelo carvalho")]
+dados_dsa2 = [(1, "James Smith"),
+              (2, "Michael Rose"),
+              (3, "Lucas Martins"),
+              (4, "Marcelo Carvalho"),
+              (5, "Marcelo carvalho")]
 
 # Cria o dataframe com a definição do schema
-df2 = spark.createDataFrame(data = dados_dsa2, schema = ["id","nome"])
+df2 = spark.createDataFrame(data=dados_dsa2, schema=["id", "nome"])
 
 print("Outros Filtros:")
 
@@ -88,12 +88,6 @@ df2.filter(df2.nome.like("L%")).show(truncate=False)
 # Filtra linhas onde o campo 'nome' contém a substring "carvalho" em qualquer parte do texto
 df2.filter(df2.nome.like("%carvalho%")).show(truncate=False)
 
-# Filtra linhas onde o campo 'nome' corresponde à expressão regular que identifica nomes 
-# que terminam com "carvalho", ignorando diferenças entre maiúsculas e minúsculas. 
+# Filtra linhas onde o campo 'nome' corresponde à expressão regular que identifica nomes
+# que terminam com "carvalho", ignorando diferenças entre maiúsculas e minúsculas.
 df2.filter(df2.nome.rlike("(?i).*carvalho$")).show(truncate=False)
-
-
-
-
-
-

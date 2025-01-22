@@ -18,27 +18,27 @@ spark = SparkSession.builder.appName('DSAProjeto2-Script14').getOrCreate()
 
 # Cria dados de exemplo
 dados_dsa = [
-        (("Jonas","","Soares"),["Java","Scala","C++"],"SP","M"),
-        (("Clara","Rose",""),["Spark","Java","C++"],"RJ","F"),
-        (("Marcela","","Teixeira"),["Rust","Go"],"SP","F"),
-        (("Roberto","Vasconcelos","Souza"),["Rust","Go"],"RJ","M"),
-        (("Alice","Telles","Morgan"),["Rust","Go"],"RJ","M"),
-        (("Luiz","Duarte","Oliveira"),["Python","Go"],"SP","M")]
-        
+    (("Jonas", "", "Soares"), ["Java", "Scala", "C++"], "SP", "M"),
+    (("Clara", "Rose", ""), ["Spark", "Java", "C++"], "RJ", "F"),
+    (("Marcela", "", "Teixeira"), ["Rust", "Go"], "SP", "F"),
+    (("Roberto", "Vasconcelos", "Souza"), ["Rust", "Go"], "RJ", "M"),
+    (("Alice", "Telles", "Morgan"), ["Rust", "Go"], "RJ", "M"),
+    (("Luiz", "Duarte", "Oliveira"), ["Python", "Go"], "SP", "M")]
+
 # Define o schema de Struct Aninhada
 schema_dados_dsa = StructType([
-        StructField('nome', StructType([
-             StructField('primeironome', StringType(), True),
-             StructField('nomedomeio', StringType(), True),
-             StructField('sobrenome', StringType(), True)
-             ])),
-         StructField('linguagens', ArrayType(StringType()), True),
-         StructField('estado', StringType(), True),
-         StructField('genero', StringType(), True)
-         ])
+    StructField('nome', StructType([
+        StructField('primeironome', StringType(), True),
+        StructField('nomedomeio', StringType(), True),
+        StructField('sobrenome', StringType(), True)
+    ])),
+    StructField('linguagens', ArrayType(StringType()), True),
+    StructField('estado', StringType(), True),
+    StructField('genero', StringType(), True)
+])
 
 # Cria o dataframe com a definição do schema
-df = spark.createDataFrame(data = dados_dsa, schema = schema_dados_dsa)
+df = spark.createDataFrame(data=dados_dsa, schema=schema_dados_dsa)
 
 # Exibe o esquema do DataFrame para verificar os tipos de dados das colunas
 df.printSchema()
@@ -50,12 +50,11 @@ df.show(truncate=False)
 # Relação de igualdade
 print("Filtros de Igualdade:")
 df.filter(df.estado == "SP").show(truncate=False)
-df.filter(col("estado") == "SP").show(truncate=False)  
-df.filter("genero == 'M'").show(truncate=False)  
+df.filter(col("estado") == "SP").show(truncate=False)
+df.filter("genero == 'M'").show(truncate=False)
 
 # Relação de desigualdade
 print("Filtros de Desigualdade:")
 df.filter(~(df.estado == "SP")).show(truncate=False)
-df.filter(df.estado != "SP").show(truncate=False)  
-df.filter("genero <> 'M'").show(truncate=False)     
-
+df.filter(df.estado != "SP").show(truncate=False)
+df.filter("genero <> 'M'").show(truncate=False)

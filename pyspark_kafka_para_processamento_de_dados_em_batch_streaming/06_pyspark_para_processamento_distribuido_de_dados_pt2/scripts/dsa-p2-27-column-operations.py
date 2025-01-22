@@ -17,7 +17,7 @@ print('\nDSA Projeto 2 - Script 27 - Operações de Coluna:\n')
 spark = SparkSession.builder.appName('DSAProjeto2-Script27').getOrCreate()
 
 # Cria uma lista de tuplas com nome e idade
-dsa_dados = [("Eduardo",23), ("Isabela",40)]
+dsa_dados = [("Eduardo", 23), ("Isabela", 40)]
 
 # Cria um DataFrame a partir dos dados e renomeia as colunas usando nomes qualificados
 df = spark.createDataFrame(dsa_dados).toDF("nome.primeironome", "genero")
@@ -35,7 +35,7 @@ df.select(col("`nome.primeironome`")).show()
 df.select(df["`nome.primeironome`"]).show()
 
 # Cria uma nova coluna 'new_col' que contém os dois primeiros caracteres de 'nome.primeironome' e mostra o resultado
-df.withColumn("new_col", col("`nome.primeironome`").substr(1,2)).show()
+df.withColumn("new_col", col("`nome.primeironome`").substr(1, 2)).show()
 
 # Filtra e mostra as linhas onde 'nome.primeironome' começa com "J"
 df.filter(col("`nome.primeironome`").startswith("J")).show()
@@ -87,10 +87,10 @@ df.select(col("prop.nivel")).show()
 df.select(col("prop.*")).show()
 
 # Cria um DataFrame com três colunas numéricas
-data = [(100,2,1),(200,3,4),(300,4,4)]
+data = [(100, 2, 1), (200, 3, 4), (300, 4, 4)]
 
 # Cria um DataFrame e nomeia as colunas
-df = spark.createDataFrame(data).toDF("col1","col2","col3")
+df = spark.createDataFrame(data).toDF("col1", "col2", "col3")
 
 # Realiza operações aritméticas entre colunas e mostra o resultado de col1 + col2
 df.select(df.col1 + df.col2).show()
@@ -115,5 +115,3 @@ df.select(df.col2 < df.col3).show()
 
 # Mostra o resultado de col2 == col3 (igualdade)
 df.select(df.col2 == df.col3).show()
-
-

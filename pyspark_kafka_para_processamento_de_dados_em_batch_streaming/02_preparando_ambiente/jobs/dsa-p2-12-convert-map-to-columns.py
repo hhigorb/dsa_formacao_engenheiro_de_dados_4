@@ -26,7 +26,7 @@ dados_dsa = [("Bruno", {"idade": "30", "cidade": "Natal"}),
              ("Tatiana", {"idade": "25", "cidade": "Manaus"})]
 
 # Cria um DataFrame com os dados definidos
-df = spark.createDataFrame(data = dados_dsa, schema = schema)
+df = spark.createDataFrame(data=dados_dsa, schema=schema)
 
 # Mostra o DataFrame original
 df.show(truncate=False)

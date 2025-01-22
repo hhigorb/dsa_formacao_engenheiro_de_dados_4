@@ -1,6 +1,7 @@
 # DSA Projeto 2 - Script 21 - Loop
 
 # Imports
+import pandas as pd
 import os
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import concat_ws, col, lit
@@ -15,29 +16,30 @@ print('\nDSA Projeto 2 - Script 21 - Loop:\n')
 spark = SparkSession.builder.appName('DSAProjeto2-Script21').getOrCreate()
 
 # Cria uma lista de tuplas contendo dados de pessoas, incluindo primeiro nome, sobrenome, gênero e salário
-dados_dsa = [('Alessandro','Gomes','M',30),
-             ('Tereza','Oliveira','F',41),
-             ('Fernando','Silva','M',62)]
+dados_dsa = [('Alessandro', 'Gomes', 'M', 30),
+             ('Tereza', 'Oliveira', 'F', 41),
+             ('Fernando', 'Silva', 'M', 62)]
 
 # Define os nomes das colunas para o DataFrame
 colunas = ["primeironome", "sobrenome", "genero", "salario"]
 
 # Cria um DataFrame com os dados fornecidos e as colunas especificadas
-df = spark.createDataFrame(data = dados_dsa, schema = colunas)
+df = spark.createDataFrame(data=dados_dsa, schema=colunas)
 
 print('Dataframe Original:')
 df.show()
 
 # Seleciona e exibe o nome completo concatenado, o gênero e o dobro do salário
 print('Dataframe com Concat:')
-df.select(concat_ws(",", df.primeironome, df.sobrenome).alias("name"), df.genero, lit(df.salario * 2).alias("novo_salario")).show()
+df.select(concat_ws(",", df.primeironome, df.sobrenome).alias("name"),
+          df.genero, lit(df.salario * 2).alias("novo_salario")).show()
 
-# Coleta os dados do DataFrame e imprime no console 
+# Coleta os dados do DataFrame e imprime no console
 print('Dataframe com Collect:')
 print(df.collect())
 
 # Converte o DataFrame para um RDD e aplica uma transformação para concatenar nome e sobrenome, dobrar o salário
-rdd = df.rdd.map(lambda x: (x[0] + "," + x[1], x[2], x[3] * 2))  
+rdd = df.rdd.map(lambda x: (x[0] + "," + x[1], x[2], x[3] * 2))
 
 # Converte o RDD de volta para um DataFrame com colunas nomeadas
 df2 = rdd.toDF(["name", "genero", "novo_salario"])
@@ -48,7 +50,8 @@ print('Dataframe Depois de Manipular os Dados com RDD:')
 df2.show()
 
 # Usa uma função lambda para imprimir dados do RDD
-df.rdd.foreach(lambda x: print("Data ==>"+x["primeironome"]+","+x["sobrenome"]+","+x["genero"]+","+str(x["salario"] * 2)))
+df.rdd.foreach(lambda x: print(
+    "Data ==>"+x["primeironome"]+","+x["sobrenome"]+","+x["genero"]+","+str(x["salario"] * 2)))
 
 # Coleta dados do DataFrame e armazena em uma variável
 dataCollect = df.collect()
@@ -63,7 +66,6 @@ for row in dataCollect:
 dataCollect = df.rdd.toLocalIterator()
 
 # Importa a biblioteca pandas
-import pandas as pd
 
 # Converte o DataFrame do Spark para um DataFrame do Pandas
 pandasDF = df.toPandas()

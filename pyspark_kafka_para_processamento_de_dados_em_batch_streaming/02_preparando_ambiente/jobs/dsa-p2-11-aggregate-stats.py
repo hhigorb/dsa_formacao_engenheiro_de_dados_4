@@ -6,7 +6,7 @@ import pyspark
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import approx_count_distinct, collect_list
 from pyspark.sql.functions import collect_set, sum, avg, min, max, countDistinct, count, sum_distinct
-from pyspark.sql.functions import first, last, kurtosis, mean, skewness 
+from pyspark.sql.functions import first, last, kurtosis, mean, skewness
 from pyspark.sql.functions import stddev, stddev_samp, stddev_pop
 from pyspark.sql.functions import variance, var_samp, var_pop
 
@@ -33,9 +33,9 @@ dados_dsa = [("Ana", "Vendas", 3000),
 
 # Define o esquema para o DataFrame
 schema = ["nome", "departmento", "salario"]
-  
+
 # Cria um DataFrame com os dados e esquema fornecidos
-df = spark.createDataFrame(data = dados_dsa, schema = schema)
+df = spark.createDataFrame(data=dados_dsa, schema=schema)
 
 # Exibe o esquema do DataFrame
 df.printSchema()
@@ -44,7 +44,8 @@ df.printSchema()
 df.show(truncate=False)
 
 # Calcula e imprime a contagem distinta dos salários
-print("Contagem Distinta: " + str(df.select(approx_count_distinct("salario")).collect()[0][0]))
+print("Contagem Distinta: " +
+      str(df.select(approx_count_distinct("salario")).collect()[0][0]))
 print()
 
 # Calcula e imprime a média dos salários
@@ -93,7 +94,8 @@ df.select(mean("salario")).show(truncate=False)
 df.select(skewness("salario")).show(truncate=False)
 
 # Calcula e mostra o desvio padrão amostral e populacional dos salários
-df.select(stddev("salario"), stddev_samp("salario"), stddev_pop("salario")).show(truncate=False)
+df.select(stddev("salario"), stddev_samp("salario"),
+          stddev_pop("salario")).show(truncate=False)
 
 # Calcula e mostra a soma dos salários
 df.select(sum("salario")).show(truncate=False)
@@ -102,4 +104,5 @@ df.select(sum("salario")).show(truncate=False)
 df.select(sum_distinct("salario")).show(truncate=False)
 
 # Calcula e mostra a variância amostral e populacional dos salários
-df.select(variance("salario"),var_samp("salario"),var_pop("salario")).show(truncate=False)
+df.select(variance("salario"), var_samp("salario"),
+          var_pop("salario")).show(truncate=False)

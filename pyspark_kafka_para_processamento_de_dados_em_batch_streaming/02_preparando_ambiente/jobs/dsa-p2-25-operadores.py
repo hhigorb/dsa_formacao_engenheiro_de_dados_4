@@ -21,7 +21,7 @@ dados_dsa = [("Eric", "Clapton", "100", None),
              ("Eddie", "Van Halen", "200", 'M'),
              ("Carlos", "Santana", "None", ''),
              ("Jimi Hendrix", None, "400", 'M'),
-             ("Mark", "Knopfler", 500, 'M')] 
+             ("Mark", "Knopfler", 500, 'M')]
 
 # Nome das colunas
 colunas = ["primeironome", "sobrenome", "id", "genero"]
@@ -31,8 +31,8 @@ df = spark.createDataFrame(dados_dsa, colunas)
 
 # Alias
 print('\nOperador alias():')
-df.select(df.primeironome.alias("first_name"), \
-          df.sobrenome.alias("last_name"), \
+df.select(df.primeironome.alias("first_name"),
+          df.sobrenome.alias("last_name"),
           expr("primeironome ||','|| sobrenome").alias("fulsobrenome")).show()
 
 # asc, desc
@@ -46,7 +46,7 @@ df.select(df.primeironome, df.id.cast("int")).printSchema()
 
 # between
 print('\nOperador between():')
-df.filter(df.id.between(100,300)).show()
+df.filter(df.id.between(100, 300)).show()
 
 # contains
 print('\nOperador contains():')
@@ -64,5 +64,4 @@ df.filter(df.sobrenome.isNotNull()).show()
 
 # substr
 print('\nOperador substr():')
-df.select(df.primeironome.substr(1,2).alias("substr")).show()
-
+df.select(df.primeironome.substr(1, 2).alias("substr")).show()

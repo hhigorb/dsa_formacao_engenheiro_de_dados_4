@@ -16,11 +16,11 @@ print('\nDSA Projeto 2 - Script 23 - Split:\n')
 spark = SparkSession.builder.appName('DSAProjeto2-Script23').getOrCreate()
 
 # Cria uma lista de tuplas contendo dados de pessoas, incluindo nome, nome do meio, sobrenome e data de nascimento
-dados_dsa = [('Marcela','','Figueiredo','1981-04-01'),
-             ('Eduardo','Barros','','2001-05-19'),
-             ('Rafael','','Almeida','1979-09-05'),
-             ('Isabela','Cristina','Souza','1997-12-01'),
-             ('Lucas','Antonio','Nascimento','1990-02-17')]
+dados_dsa = [('Marcela', '', 'Figueiredo', '1981-04-01'),
+             ('Eduardo', 'Barros', '', '2001-05-19'),
+             ('Rafael', '', 'Almeida', '1979-09-05'),
+             ('Isabela', 'Cristina', 'Souza', '1997-12-01'),
+             ('Lucas', 'Antonio', 'Nascimento', '1990-02-17')]
 
 # Define os nomes das colunas para o DataFrame
 colunas = ["nome", "nomedomeio", "sobrenome", "data_nascimento"]
@@ -60,7 +60,8 @@ df2.show(truncate=False)
 split_col = pyspark.sql.functions.split(df['data_nascimento'], '-')
 
 # Usa o select
-df3 = df.select("nome", "nomedomeio", "sobrenome", "data_nascimento", split_col.getItem(0).alias('year'), split_col.getItem(1).alias('month'), split_col.getItem(2).alias('day'))
+df3 = df.select("nome", "nomedomeio", "sobrenome", "data_nascimento", split_col.getItem(
+    0).alias('year'), split_col.getItem(1).alias('month'), split_col.getItem(2).alias('day'))
 
 # Exibe o DataFrame df3 com as novas colunas
 df3.show(truncate=False)
@@ -73,10 +74,3 @@ df4.select(split(df4.str, '[AB]').alias('str')).show(truncate=False)
 
 # Divide a string em substrings onde 'A' ou 'B' ocorrem, com um limite máximo de 2 substrings
 df4.select(split(df4.str, '[AB]', 2).alias('str')).show(truncate=False)
-
-
-
-
-
-
-

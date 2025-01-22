@@ -17,12 +17,12 @@ spark = SparkSession.builder.appName('DSAProjeto2-Script20').getOrCreate()
 
 # Define uma lista de tuplas contendo nomes e listas de listas de linguagens de programação e tecnologias
 dados_dsa = [
-  ("Maria",[["Java","Scala","C++"],["Spark","Java"]]),
-  ("Bob",[["Spark","Java","C++"],["Spark","Java"]]),
-  ("Elias",[["Python","Rust"],["Spark","Python"]])]
+    ("Maria", [["Java", "Scala", "C++"], ["Spark", "Java"]]),
+    ("Bob", [["Spark", "Java", "C++"], ["Spark", "Java"]]),
+    ("Elias", [["Python", "Rust"], ["Spark", "Python"]])]
 
 # Cria um DataFrame a partir dos dados fornecidos com as colunas 'nome' e 'linguagens'
-df = spark.createDataFrame(data = dados_dsa, schema = ['nome','linguagens'])
+df = spark.createDataFrame(data=dados_dsa, schema=['nome', 'linguagens'])
 
 # Imprime o esquema do DataFrame para visualizar a estrutura das colunas
 df.printSchema()
@@ -35,10 +35,3 @@ df.select(df.nome, explode(df.linguagens)).show(truncate=False)
 
 # Seleciona o nome e aplica a função flatten na coluna 'linguagens' para combinar as listas internas em uma única lista
 df.select(df.nome, flatten(df.linguagens)).show(truncate=False)
-
-
-
-
-
-
-

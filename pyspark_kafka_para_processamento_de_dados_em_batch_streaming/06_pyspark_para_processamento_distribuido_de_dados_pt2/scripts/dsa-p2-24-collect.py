@@ -17,7 +17,8 @@ print('\nDSA Projeto 2 - Script 24 - Collect:\n')
 spark = SparkSession.builder.appName('DSAProjeto2-Script24').getOrCreate()
 
 # Define uma lista de tuplas contendo nomes de departamentos e seus respectivos IDs
-dados_dsa = [("Data Science", 10), ("Tecnologia", 20), ("Marketing", 30), ("Vendas", 40)]
+dados_dsa = [("Data Science", 10), ("Tecnologia", 20),
+             ("Marketing", 30), ("Vendas", 40)]
 
 # Define os nomes das colunas para o DataFrame
 deptColumns = ["dept_name", "dept_id"]
@@ -46,5 +47,3 @@ print(dataCollect2)
 # Itera sobre cada Row na lista coletada e imprime o nome do departamento e o ID, formatados como uma string
 for row in dataCollect:
     print(row['dept_name'] + "," + str(row['dept_id']))
-
-

@@ -14,22 +14,22 @@ print('\nDSA Projeto 2 - Script 01 - Distinct:\n')
 spark = SparkSession.builder.appName('DSAProjeto2-Script01').getOrCreate()
 
 # Define uma lista de tuplas, cada uma representando um registro com nome do funcionário, departamento e salário
-dados_dsa = [("Roberto", "Vendas", 30000), \
-             ("Michael", "Vendas", 46000), \
-             ("Julio", "Vendas", 41000), \
-             ("Maria", "Contabilidade", 30000), \
-             ("Roberto", "Vendas", 30000), \
-             ("Gustavo", "Contabilidade", 33000), \
-             ("Jenifer", "Contabilidade", 39000), \
-             ("Ana", "Marketing", 30000), \
-             ("Ana", "Marketing", 30000), \
+dados_dsa = [("Roberto", "Vendas", 30000),
+             ("Michael", "Vendas", 46000),
+             ("Julio", "Vendas", 41000),
+             ("Maria", "Contabilidade", 30000),
+             ("Roberto", "Vendas", 30000),
+             ("Gustavo", "Contabilidade", 33000),
+             ("Jenifer", "Contabilidade", 39000),
+             ("Ana", "Marketing", 30000),
+             ("Ana", "Marketing", 30000),
              ("Saulo", "Vendas", 41000)]
 
 # Define os nomes das colunas para o DataFrame que será criado
 columns = ["nome_funcionario", "departmento", "salario"]
 
 # Cria um DataFrame a partir dos dados e esquema fornecidos
-df = spark.createDataFrame(data = dados_dsa, schema = columns)
+df = spark.createDataFrame(data=dados_dsa, schema=columns)
 
 # Exibe o esquema do DataFrame, mostrando os tipos de dados de cada coluna
 df.printSchema()
@@ -52,7 +52,8 @@ distinctDF.show(truncate=False)
 df2 = df.dropDuplicates()
 
 # Imprime a contagem de linhas após remover duplicatas
-print("Distinct Count da Tabela Abaixo Removendo Duplicatas: " + str(df2.count()) + "\n")
+print("Distinct Count da Tabela Abaixo Removendo Duplicatas: " +
+      str(df2.count()) + "\n")
 
 # Mostra o DataFrame após remover duplicatas, sem truncar os valores das células
 df2.show(truncate=False)
@@ -61,7 +62,8 @@ df2.show(truncate=False)
 dropDisDF = df.dropDuplicates(["departmento", "salario"])
 
 # Imprime a contagem de linhas distintas com base nas colunas 'departmento' e 'salario'
-print("Distinct Count da Tabela Abaixo Removendo Duplicatas em Duas Colunas Apenas: " + str(dropDisDF.count()) + "\n")
+print("Distinct Count da Tabela Abaixo Removendo Duplicatas em Duas Colunas Apenas: " +
+      str(dropDisDF.count()) + "\n")
 
 # Mostra o DataFrame final, sem truncar os valores das células
 dropDisDF.show(truncate=False)

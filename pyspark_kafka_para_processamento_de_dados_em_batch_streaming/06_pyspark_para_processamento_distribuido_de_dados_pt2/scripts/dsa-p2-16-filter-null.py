@@ -15,7 +15,8 @@ print('\nDSA Projeto 2 - Script 16 - Filtro de Nulos:\n')
 spark = SparkSession.builder.appName('DSAProjeto2-Script16').getOrCreate()
 
 # Cria uma lista de tuplas com dados, onde alguns valores estão ausentes (None)
-dados_dsa = [("Bruno", None, "M"), ("Laura", "Fortaleza", "F"), ("Vagner", None, None)]
+dados_dsa = [("Bruno", None, "M"), ("Laura", "Fortaleza", "F"),
+             ("Vagner", None, None)]
 
 # Define os nomes das colunas para o DataFrame
 colunas = ["nome", "estado", "genero"]
@@ -60,8 +61,3 @@ df.createOrReplaceTempView("DATA")
 spark.sql("SELECT * FROM DATA where ESTADO IS NULL").show()
 spark.sql("SELECT * FROM DATA where ESTADO IS NULL AND GENERO IS NULL").show()
 spark.sql("SELECT * FROM DATA where ESTADO IS NOT NULL").show()
-
-
-
-
-

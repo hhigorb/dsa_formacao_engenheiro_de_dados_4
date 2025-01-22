@@ -14,15 +14,15 @@ print('\nDSA Projeto 2 - Script 08 - Top N:\n')
 spark = SparkSession.builder.appName('DSAProjeto2-Script08').getOrCreate()
 
 # Define os dados para criar o DataFrame, incluindo nomes e idades
-dados_dsa = [("Bob",24),("Ana",44),
-             ("Greg",43),("Laura",43),
-             ("John",27),("Carolina",47)]
+dados_dsa = [("Bob", 24), ("Ana", 44),
+             ("Greg", 43), ("Laura", 43),
+             ("John", 27), ("Carolina", 47)]
 
 # Define os nomes das colunas para o DataFrame
-columns = ["nome","idade",]
+columns = ["nome", "idade",]
 
 # Cria um DataFrame com os dados fornecidos e esquema definido pelas colunas
-df = spark.createDataFrame(data = dados_dsa, schema = columns)
+df = spark.createDataFrame(data=dados_dsa, schema=columns)
 
 # Mostra o conteúdo do DataFrame
 df.show()
@@ -51,5 +51,3 @@ print()
 pandasDF = df.limit(3).toPandas()
 print(pandasDF)
 print()
-
-
