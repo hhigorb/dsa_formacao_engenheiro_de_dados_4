@@ -6,7 +6,10 @@ Arquivos JSON em Banco de Dados PostgreSQL
 
 # Imports
 from pyspark.sql import SparkSession, types
-from pyspark.sql.functions import col, regexp_replace
+from pyspark.sql.functions import (
+    col, regexp_replace,
+    from_utc_timestamp, current_timestamp
+)
 
 # Inicializa a SparkSession, que é a forma de se comunicar com o cluster
 spark = SparkSession.builder \
@@ -45,6 +48,8 @@ if df.rdd.isEmpty():
 else:
     # Limpa os dados removendo "@" (se existir) da coluna "nome"
     df = df.withColumn("nome", regexp_replace(col("nome"), "@", ""))
+    df = df.withColumn("dataload", from_utc_timestamp(
+        current_timestamp(), "America/Sao_Paulo"))
 
     # Salva os dados no banco de dados PostgreSQL
     df.write \

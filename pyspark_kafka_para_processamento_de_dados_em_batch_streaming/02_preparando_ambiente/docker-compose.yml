@@ -11,6 +11,7 @@ services:
       retries: 3
     volumes:
       - ./dados:/opt/spark/data
+      - ./jars:/opt/spark/jar_files
       - ./jobs:/opt/spark/apps
       - spark-logs:/opt/spark/spark-events
     env_file:
@@ -45,6 +46,7 @@ services:
       - .env.spark
     volumes:
       - ./dados:/opt/spark/data
+      - ./jars:/opt/spark/jar_files
       - ./jobs:/opt/spark/apps
       - spark-logs:/opt/spark/spark-events
     networks:

@@ -47,5 +47,5 @@ docker exec dsa-pyspark-master spark-submit --deploy-mode client ./apps/projeto1
 ### Executa o Job com Driver JDBC
 
 ```bash
-docker exec dsa-pyspark-master spark-submit --jars data/postgresql-42.7.4.jar --deploy-mode client ./apps/projeto1.py
+docker exec dsa-pyspark-master spark-submit --jars jar_files/postgresql-42.7.4.jar --deploy-mode client ./apps/projeto1.py
 ```
