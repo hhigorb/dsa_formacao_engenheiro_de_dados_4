@@ -46,8 +46,7 @@ COPY requirements/requirements.txt .
 RUN pip3 install -r requirements.txt
 
 # Variável de ambiente do JAVA_HOME (MacOS)
-ENV JAVA_HOME="/usr/lib/jvm/java-11-openjdk-amd64"
-#ENV JAVA_HOME="/usr/lib/jvm/java-11-openjdk-arm64"
+ENV JAVA_HOME="/usr/lib/jvm/java-11-openjdk-arm64"
 
 # Adiciona os binários do Spark, Hadoop e Java no PATH
 ENV PATH="$SPARK_HOME/sbin:/opt/spark/bin:${PATH}"
