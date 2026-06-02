@@ -1,6 +1,5 @@
 ## O que são Surrogate Keys na modelagem do DW?
 
-
 Surrogate keys são chaves artificiais, geradas pelo sistema, que servem como a principal chave de identificação para cada registro em uma tabela de um Data Warehouse.
 
 Ao contrário das chaves naturais, que são derivadas de dados reais e muitas vezes têm significado ou valor no mundo real (como um número de CPF ou um endereço de e-mail), as surrogate keys não têm significado fora do contexto do DW.
