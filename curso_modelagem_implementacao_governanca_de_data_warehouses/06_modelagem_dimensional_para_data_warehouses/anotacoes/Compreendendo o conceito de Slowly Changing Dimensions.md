@@ -7,7 +7,7 @@ A maneira como essas mudanças são gerenciadas em um DW afeta diretamente a int
 ### Principais Tipos de SCD
 
 
-- **Tipo 1 (SCD1) - Atualização Direta:** Neste tipo, quando um atributo muda, o DW é simplesmente atualizado com o novo valor, sem manter um histórico das alterações anteriores. Esse método é útil quando o histórico não é importante ou quando as mudanças são corretivas.<br><br>
+- **Tipo 1 (SCD1) - Atualização Direta:** Neste tipo, quando um atributo muda, o DW é simplesmente atualizado com o novo valor, sem manter um histórico das alterações anteriores. Esse método é útil quando o histórico não é importante ou quando as mudanças são corretivas.
 
 - **Tipo 2 (SCD2) - Histórico Completo:** Aqui, cada alteração cria um novo registro na dimensão, com um identificador único (geralmente uma Surrogate Key) e possivelmente marcas de tempo para indicar a validade do registro. Isso permite o rastreamento completo do histórico de alterações. SCD2 é amplamente usado quando é crucial manter o histórico para análise temporal.
   

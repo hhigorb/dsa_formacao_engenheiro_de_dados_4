@@ -1,21 +1,78 @@
 ## O que são Surrogate Keys na modelagem do DW?
 
-Surrogate keys são chaves artificiais, geradas pelo sistema, que servem como a principal chave de identificação para cada registro em uma tabela de um Data Warehouse.
+A Surrogate Key é uma chave artificial criada para identificar registros de uma dimensão.
 
-Ao contrário das chaves naturais, que são derivadas de dados reais e muitas vezes têm significado ou valor no mundo real (como um número de CPF ou um endereço de e-mail), as surrogate keys não têm significado fora do contexto do DW.
+Normalmente é um número inteiro sequencial.
 
-Geralmente, são números inteiros sequenciais.
+Exemplo:
 
-### Por Que Usar Surrogate Keys?
+**dim_cliente**
 
-- Como as surrogate keys não têm relação direta com os dados de negócios, elas permitem que o DW seja desacoplado das alterações nos sistemas de origem. Isso torna o DW mais estável e menos suscetível a mudanças externas.<br><br>
+| sk_cliente | id_cliente | nome |
+| ---------- | ---------- | ---- |
+| 1	         | 845        | João
+| 2	         | 912        | Maria
 
-- Elas garantem a unicidade dos registros, o que é essencial para a integridade dos dados. Isso é particularmente útil em situações onde as chaves naturais podem mudar ou não ser únicas.<br><br>
-  
-- O uso de surrogate keys, geralmente números inteiros, pode melhorar o desempenho das operações de banco de dados, especialmente em joins, buscas e indexações, devido ao menor tamanho de dados e à simplicidade de comparação.<br><br>
-  
-- Elas facilitam a integração de dados de múltiplas fontes que podem ter chaves naturais conflitantes ou formatos incompatíveis.<br><br>
-  
-- As surrogate keys permitem uma gestão mais fácil do histórico de alterações dos dados. Elas são essenciais em dimensões do tipo Slowly Changing Dimension (SCD), onde é necessário manter versões históricas de registros.
+**sk_cliente** -> Surrogate Key
 
-Surrogate Keys são um componente crítico na modelagem de Data Warehouses, proporcionando uma estrutura robusta, flexível e de alto desempenho para o armazenamento e análise de grandes volumes de dados.
+**id_cliente** -> chave natural do sistema origem
+
+A PK da dimensão normalmente é a Surrogate Key.
+
+---
+
+### Por que usar SK?
+
+**1. Histórico (SCD Type 2)**
+
+Permite guardar múltiplas versões do mesmo registro.
+
+Exemplo:
+
+| sk_cliente | id_cliente | cidade |
+| ---------- | ---------- | ------ |
+| 1	         | 845        |	SP
+| 2	         | 845	      | Campinas
+
+Assim, fatos antigas continuam apontando para a versão antiga do cliente.
+
+---
+
+**2. Independência do sistema origem**
+
+A chave do sistema origem pode:
+
+- mudar
+- vir nula
+- ser reutilizada
+- ter formatos diferentes
+
+A SK resolve isso.
+
+---
+
+**3. Performance**
+
+Inteiros são menores e mais rápidos para joins e processamento analítico.
+
+---
+
+### Tabela Fato
+
+A fato normalmente armazena:
+
+- métricas
+- FK das dimensões
+
+Exemplo:
+
+**fato_venda**
+
+| sk_cliente | sk_produto | sk_data | valor_venda |
+| ---------- | ---------- | ------- | ----------- |
+
+
+As colunas da fato geralmente são:
+
+- medidas (valor, quantidade, desconto)
+- referências para dimensões
