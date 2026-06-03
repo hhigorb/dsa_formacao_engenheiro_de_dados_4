@@ -1,6 +1,6 @@
 ## Como iniciar uma modelagem de DW
 
-Antes de criar tabelas fato e dimensão, é necessário entender quatro pontos fundamentais:
+Antes de criar tabelas fato e dimensão, é necessário entender alguns conceitos fundamentais.
 
 ### 1. Processo de Negócio
 
@@ -74,9 +74,24 @@ O grão determina:
 - A unicidade da tabela fato
 - As perguntas que poderão ser respondidas
 
-### Após Definir os 4 Pontos
+### 5. Definição das Métricas
 
-Com o processo de negócio, objetivos analíticos, dados disponíveis e grão definidos, a modelagem dimensional é construída identificando:
+Defina quais valores quantitativos serão armazenados na tabela fato.
+
+Exemplos:
+
+- Quantidade vendida
+- Valor bruto
+- Valor líquido
+- Desconto
+- Frete
+- Lucro
+
+As métricas dependem diretamente do grão definido para a fato.
+
+### Após Definir Esses Conceitos
+
+Com o processo de negócio, objetivos analíticos, dados disponíveis, grão e métricas definidos, a modelagem dimensional é construída identificando:
 
 **Tabela Fato**
 
@@ -88,11 +103,11 @@ Armazenam os atributos descritivos utilizados para analisar a fato.
 
 **Surrogate Keys**
 
-Cada dimensão normalmente possui uma chave substituta (SK).
+Cada dimensão normalmente possui uma chave substituta (SK) utilizada para relacionamento com as tabelas fato.
 
 **Slowly Changing Dimensions**
 
-Decidir como mudanças nas dimensões serão tratadas.
+Define como mudanças nos atributos das dimensões serão tratadas ao longo do tempo.
 
 ### Resumo
 
@@ -102,5 +117,9 @@ Antes de modelar um Data Warehouse, responda:
 - Quais perguntas o negócio deseja responder?
 - Quais dados estão disponíveis?
 - Qual será o grão da tabela fato?
-- Qual serão as tabelas fato e dimensões e seus atributos (colunas), relacionamentos (como as tabelas irão se conectar) e chaves (identificador único da tabela)
-- Como será tratado o histórico nas dimensões
+- Quais métricas serão armazenadas na fato?
+- Quais serão as tabelas fato e dimensões?
+- Quais atributos existirão em cada dimensão?
+- Como fatos e dimensões irão se relacionar?
+- Quais PKs, NKs e SKs serão utilizadas?
+- Como será tratado o histórico nas dimensões?
