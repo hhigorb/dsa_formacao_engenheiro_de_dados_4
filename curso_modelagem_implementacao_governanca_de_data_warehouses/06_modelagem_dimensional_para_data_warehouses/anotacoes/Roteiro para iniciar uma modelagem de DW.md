@@ -2,9 +2,34 @@
 
 Antes de criar tabelas fato e dimensão, é necessário entender alguns conceitos fundamentais.
 
-### 1. Processo de Negócio
+### 1. Entender o Resultado Esperado
 
-Primeiro, identifique qual processo da empresa será analisado.
+Antes mesmo de pensar em fatos, dimensões ou tabelas, converse com a área de negócio e tente entender qual informação eles desejam consumir.
+
+Sempre que possível, peça exemplos de:
+
+- Relatórios atuais
+- Planilhas Excel
+- Dashboards
+- Gráficos
+- Indicadores (KPIs)
+- Tabelas que eles montam manualmente
+
+Muitas vezes o usuário não sabe explicar exatamente quais dados precisa, mas consegue mostrar o resultado que gostaria de visualizar.
+
+Analisar esses exemplos ajuda a identificar:
+
+- Quais perguntas precisam ser respondidas
+- Quais métricas serão necessárias
+- Quais dimensões serão utilizadas
+- Qual deverá ser o grão da fato
+- Como os dados serão consumidos
+
+Uma boa prática é começar pelo relatório desejado e trabalhar "de trás para frente" até chegar ao modelo dimensional necessário para produzi-lo.
+
+### 2. Processo de Negócio
+
+Qual processo da empresa será analisado?
 
 Exemplos:
 
@@ -17,7 +42,7 @@ Exemplos:
 
 O Data Warehouse deve ser construído em torno de um processo de negócio.
 
-### 2. Objetivos Analíticos
+### 3. Objetivos Analíticos
 
 Defina quais perguntas o negócio deseja responder.
 
@@ -31,7 +56,7 @@ Exemplos:
 
 Os objetivos analíticos determinam quais informações precisarão estar disponíveis no modelo.
 
-### 3. Dados Disponíveis
+### 4. Dados Disponíveis
 
 Identifique quais fontes de dados existem para responder às perguntas do negócio.
 
@@ -46,7 +71,7 @@ Exemplos:
 
 Nem toda pergunta desejada poderá ser respondida se os dados necessários não estiverem disponíveis.
 
-### 4. Definição do Grão da Fato
+### 5. Definição do Grão da Fato
 
 O grão define o menor nível de detalhe armazenado na tabela fato.
 
@@ -74,7 +99,7 @@ O grão determina:
 - A unicidade da tabela fato
 - As perguntas que poderão ser respondidas
 
-### 5. Definição das Métricas
+### 6. Definição das Métricas
 
 Defina quais valores quantitativos serão armazenados na tabela fato.
 
@@ -91,7 +116,7 @@ As métricas dependem diretamente do grão definido para a fato.
 
 ### Após Definir Esses Conceitos
 
-Com o processo de negócio, objetivos analíticos, dados disponíveis, grão e métricas definidos, a modelagem dimensional é construída identificando:
+Com uma ideia do resultado esperado, processo de negócio, objetivos analíticos, dados disponíveis, grão e métricas definidos, a modelagem dimensional é construída identificando:
 
 **Tabela Fato**
 
